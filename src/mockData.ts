@@ -60,7 +60,7 @@ const ProductData = [
     id: `7`,
     name: `Wizkid`,
     url: `wizkid`,
-    description: ` Made in Lagos is the fourth studio album by Nigerian singer Wizkid. It was released on 30 October 2020 by RCA Records. .`,
+    description: ` Made in Lagos is the fourth studio album by Nigerian singer Wizkid. It was released on 30 October 2020 by RCA Records.`,
     image: `/wizkid.webp`,
     price: 15,
     genre: `africa`,

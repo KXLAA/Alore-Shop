@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Link from 'next/link';
 import { AiFillShopping } from 'react-icons/ai';
 
 const Container = styled.header`
@@ -26,7 +27,9 @@ const Cart = styled(AiFillShopping)`
 const Header = () => {
   return (
     <Container>
-      <Logo>ALORE</Logo>
+      <Link href={`/`} passHref>
+        <Logo>ALORE</Logo>
+      </Link>
       <Cart />
     </Container>
   );

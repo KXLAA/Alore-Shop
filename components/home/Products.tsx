@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Link from 'next/link';
 import Image from 'next/image';
 import { ProductsProps } from 'types/types';
 
@@ -19,7 +20,7 @@ const Card = styled.div`
   transition: all 0.3s ease;
   -webkit-box-shadow: 3px 4px 15px -8px rgba(0, 0, 0, 0.71);
   box-shadow: 3px 4px 15px -8px rgba(0, 0, 0, 0.71);
-  :hover {
+  &:hover {
     opacity: 1;
     transform: translateX(0rem) translateY(-0.3125rem);
   }
@@ -86,29 +87,33 @@ const Description = styled.div`
 const Products = ({ products }: ProductsProps) => {
   return (
     <Grid>
-      {products.map(({ id, url, image, name, price }) => (
-        <Card key={id}>
-          <Description>{name.toUpperCase()}</Description>
-          <Overlay>
-            <Image
-              src={image}
-              alt="Picture of the author"
-              width={668}
-              height={668}
-              layout="responsive"
-              placeholder="blur"
-              blurDataURL={image}
-            />
-            <ImageOverlay>
-              <OverlayTxt>VIEW MORE</OverlayTxt>
-            </ImageOverlay>
-          </Overlay>
-          <Button>
-            <p style={{ textDecoration: `underline` }}>BUY NOW</p>
-            <p>$50</p>
-          </Button>
-        </Card>
-      ))}
+      <>
+        {products?.map(({ artist, slug, id, price, images }) => (
+          <Card key={id}>
+            <Description>{artist?.toUpperCase()}</Description>
+            <Link href={`/product/${slug}`} passHref>
+              <Overlay>
+                <Image
+                  src={images[0].url}
+                  alt="Picture of the author"
+                  width={668}
+                  height={668}
+                  layout="responsive"
+                  placeholder="blur"
+                  blurDataURL={images[0].url}
+                />
+                <ImageOverlay>
+                  <OverlayTxt>VIEW MORE</OverlayTxt>
+                </ImageOverlay>
+              </Overlay>
+            </Link>
+            <Button>
+              <p style={{ textDecoration: `underline` }}>BUY NOW</p>
+              <p>${price}</p>
+            </Button>
+          </Card>
+        ))}
+      </>
     </Grid>
   );
 };
