@@ -4,6 +4,7 @@ import Layout from 'components/common/Layout';
 import Header from 'components/common/Header';
 import { ProductProps } from 'types/types';
 import Similar from 'components/product/Similar';
+import { useAppContext } from 'context/state';
 
 const Container = styled.div`
   display: flex;
@@ -71,6 +72,8 @@ const ATCButton = styled.button`
 // };
 
 function Product({ product }: ProductProps) {
+  const { addToCart } = useAppContext();
+
   return (
     <Layout>
       <Header text="BACK" />
@@ -86,7 +89,9 @@ function Product({ product }: ProductProps) {
               <p>{product?.description}</p>
             </div>
 
-            <ATCButton>ADD TO CART</ATCButton>
+            <ATCButton onClick={() => addToCart(product)}>
+              ADD TO CART
+            </ATCButton>
           </Description>
           <Similar />
         </Info>
