@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ProductsProps } from 'types/types';
+import { useAppContext } from 'context/state';
 
 const Grid = styled.div`
   display: grid;
@@ -85,22 +86,24 @@ const Description = styled.div`
 `;
 
 const Products = ({ products }: ProductsProps) => {
+  const { addToCart } = useAppContext();
+
   return (
     <Grid>
       <>
-        {products?.map(({ artist, slug, id, price, images }) => (
-          <Card key={id}>
-            <Description>{artist?.toUpperCase()}</Description>
-            <Link href={`/product/${slug}`} passHref>
+        {products?.map((product) => (
+          <Card key={product.id}>
+            <Description>{product.artist?.toUpperCase()}</Description>
+            <Link href={`/product/${product.slug}`} passHref>
               <Overlay>
                 <Image
-                  src={images[0].url}
+                  src={product.images[0].url}
                   alt="Picture of the author"
                   width={668}
                   height={668}
                   layout="responsive"
                   placeholder="blur"
-                  blurDataURL={images[0].url}
+                  blurDataURL={product.images[0].url}
                 />
                 <ImageOverlay>
                   <OverlayTxt>VIEW MORE</OverlayTxt>
@@ -108,8 +111,13 @@ const Products = ({ products }: ProductsProps) => {
               </Overlay>
             </Link>
             <Button>
-              <p style={{ textDecoration: `underline` }}>BUY NOW</p>
-              <p>${price}</p>
+              <p
+                style={{ textDecoration: `underline` }}
+                onClick={() => addToCart(product)}
+              >
+                BUY NOW
+              </p>
+              <p>${product.price}</p>
             </Button>
           </Card>
         ))}

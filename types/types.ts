@@ -12,6 +12,7 @@ export interface Product {
   images: Images[];
   price: number;
   genre: string;
+  count: number;
 }
 
 export interface ProductsProps {

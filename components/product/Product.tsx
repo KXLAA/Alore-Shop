@@ -73,7 +73,7 @@ const ATCButton = styled.button`
 function Product({ product }: ProductProps) {
   return (
     <Layout>
-      <Header />
+      <Header text="BACK" />
       <Container>
         <Image src={product.images[0].url} alt={product?.artist} />
         <Info>
@@ -88,7 +88,7 @@ function Product({ product }: ProductProps) {
 
             <ATCButton>ADD TO CART</ATCButton>
           </Description>
-          {/* <Similar product={product} /> */}
+          <Similar />
         </Info>
       </Container>
     </Layout>

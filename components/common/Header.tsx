@@ -1,7 +1,9 @@
 import React from 'react';
+import { useAppContext } from 'context/state';
 import styled from 'styled-components';
 import Link from 'next/link';
 import { AiFillShopping } from 'react-icons/ai';
+import { Product } from 'types/types';
 
 const Container = styled.header`
   display: flex;
@@ -24,13 +26,54 @@ const Cart = styled(AiFillShopping)`
   cursor: pointer;
 `;
 
-const Header = () => {
+const CartCounter = styled.div`
+  transition: 0.5s ease;
+  background: #ff0000;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 70px;
+  z-index: 1;
+  cursor: pointer;
+  p {
+    font-weight: 900;
+    font-size: 36px;
+  }
+`;
+
+interface HeaderProps {
+  text: string;
+}
+
+const Header = ({ text }: HeaderProps) => {
+  const { cart } = useAppContext();
+
+  const cartQuantity = cart
+    .map(({ count }: Product) => count)
+    .reduce((accumulator: number, current: number) => accumulator + current, 0);
+
   return (
     <Container>
       <Link href={`/`} passHref>
-        <Logo>ALORE</Logo>
+        <Logo>{text}</Logo>
       </Link>
-      <Cart />
+
+      <>
+        <Link href={`/cart`} passHref>
+          <div>
+            {cart.length > 0 && (
+              <CartCounter>
+                <p>{cartQuantity}</p>
+              </CartCounter>
+            )}
+            <Cart />
+          </div>
+        </Link>
+      </>
     </Container>
   );
 };

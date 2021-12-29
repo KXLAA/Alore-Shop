@@ -19,7 +19,7 @@ export default function Home({ products }: ProductsProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
-        <Header />
+        <Header text="ALORE" />
         <Products products={products} />
         {/* <Filter /> */}
       </Layout>
@@ -42,6 +42,8 @@ export const getStaticProps = async () => {
       products {
         id
         artist
+        title
+        description
         slug
         id
         price

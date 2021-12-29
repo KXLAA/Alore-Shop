@@ -1,6 +1,8 @@
 import { AppProps } from 'next/app';
 import '@/styles/global.scss';
 import { createGlobalStyle } from 'styled-components';
+import { AppWrapper } from 'context/state';
+
 const GlobalStyle = createGlobalStyle`
 *, *::before, *::after {
     box-sizing: border-box;
@@ -39,9 +41,9 @@ const GlobalStyle = createGlobalStyle`
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <>
+    <AppWrapper>
       <GlobalStyle />
       <Component {...pageProps} />
-    </>
+    </AppWrapper>
   );
 }
