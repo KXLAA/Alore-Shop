@@ -1,27 +1,42 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useAppContext } from 'context/state';
+import device from 'components/common/MediaQueries';
 
 const Container = styled.div`
   background-color: #222222;
   border-radius: 6px;
-  padding: 24px;
-  margin-bottom: 24px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
   display: flex;
   align-items: center;
-  gap: 48px;
+  gap: 3rem;
   justify-content: space-between;
+
+  @media ${device.mobileS} {
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1.5rem;
+  }
 `;
 
 const ImageLo = styled.img`
-  width: 15%;
+  width: 100%;
   aspect-ratio: 1/1;
+
+  @media ${device.tablet} {
+    width: 100%;
+    padding-bottom: 1.5rem;
+  }
 `;
 
 const CartDesc = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
+  @media ${device.tablet} {
+    display: none;
+  }
 
   p {
     font-size: 1.5rem;
@@ -34,6 +49,10 @@ const CartItemControls = styled.div`
   align-items: center;
   justify-content: center;
   gap: 24px;
+
+  @media ${device.tablet} {
+    width: 50%;
+  }
 `;
 
 const Controllers = styled.div`
@@ -67,12 +86,33 @@ const Price = styled.p`
   color: yellow;
 `;
 
+const ImageContainer = styled.div`
+  width: 50%;
+  text-align: center;
+  @media ${device.mobileS} {
+    width: 100%;
+  }
+  h1 {
+    display: none;
+    @media ${device.tablet} {
+      font-size: 1.5rem;
+      display: block;
+    }
+  }
+`;
+
 const CartItem = ({ item }) => {
   const { addToCart, removeItem } = useAppContext();
 
   return (
     <Container>
-      <ImageLo src={item.images[0].url} alt="Picture of the author" />
+      <ImageContainer>
+        <ImageLo src={item.images[0].url} alt="Picture of the author" />
+        <h1>
+          {item?.title.toUpperCase()} : {` `}
+          {item?.artist.toUpperCase()}
+        </h1>
+      </ImageContainer>
 
       <CartDesc>
         <h1>

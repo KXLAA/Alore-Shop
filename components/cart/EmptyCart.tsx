@@ -1,6 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
+import device from 'components/common/MediaQueries';
 
 const Container = styled.div`
   font-size: 3rem;
@@ -13,6 +14,10 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   height: 60vh;
+
+  @media ${device.mobileS} {
+    font-size: 1.5rem;
+  }
 `;
 
 const Shop = styled.button`
@@ -27,6 +32,14 @@ const Shop = styled.button`
   box-shadow: 3px 4px 15px -8px rgba(0, 0, 0, 0.71);
   margin-top: 1.5rem;
   cursor: pointer;
+
+  @media ${device.mobileS} {
+    font-size: 2rem;
+  }
+
+  @media ${device.mobileXs} {
+    font-size: 1.5rem;
+  }
   &:hover {
     filter: brightness(150%);
     transform: translateX(0rem) translateY(-0.3125rem);

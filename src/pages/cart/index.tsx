@@ -5,6 +5,7 @@ import { useAppContext } from 'context/state';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import EmptyCart from 'components/cart/EmptyCart';
+import device from 'components/common/MediaQueries';
 
 const Cart = () => {
   const router = useRouter();
@@ -28,6 +29,10 @@ const Cart = () => {
       font-size: 4rem;
       font-weight: 800;
       color: yellow;
+
+      @media ${device.mobileS} {
+        font-size: 2.5rem;
+      }
     }
   `;
 
@@ -37,12 +42,24 @@ const Cart = () => {
     color: yellow;
     text-align: center;
     padding-bottom: 8px;
+
+    @media ${device.tablet} {
+      font-size: 2.5rem;
+    }
+
+    @media ${device.mobile} {
+      font-size: 2rem;
+    }
+
+    @media ${device.mobileXs} {
+      font-size: 1.5rem;
+    }
   `;
 
   const Checkout = styled.button`
     color: yellow;
     font-weight: 900;
-    font-size: 48px;
+    font-size: 3rem;
     width: 100%;
     padding: 16px;
     background-color: #222222;
@@ -52,6 +69,10 @@ const Cart = () => {
     box-shadow: 3px 4px 15px -8px rgba(0, 0, 0, 0.71);
     margin-top: 1.5rem;
     cursor: pointer;
+
+    @media ${device.mobile} {
+      font-size: 2rem;
+    }
     &:hover {
       filter: brightness(150%);
       transform: translateX(0rem) translateY(-0.3125rem);
@@ -69,7 +90,7 @@ const Cart = () => {
 
   return (
     <Layout>
-      <Header text="CART" />
+      <Header text="BACK" />
 
       {cartQuantity <= 0 ? (
         <EmptyCart />

@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Link from 'next/link';
 import { AiFillShopping } from 'react-icons/ai';
 import { Product } from 'types/types';
+import device from './MediaQueries';
 
 const Container = styled.header`
   display: flex;
@@ -18,12 +19,20 @@ const Logo = styled.h1`
   color: #ffe500;
   text-decoration: underline;
   cursor: pointer;
+
+  @media ${device.mobile} {
+    font-size: 3rem;
+  }
 `;
 
 const Cart = styled(AiFillShopping)`
   font-size: 6rem;
   color: #ffe500;
   cursor: pointer;
+
+  @media ${device.mobile} {
+    font-size: 3rem;
+  }
 `;
 
 const CartCounter = styled.div`
@@ -39,9 +48,20 @@ const CartCounter = styled.div`
   top: 70px;
   z-index: 1;
   cursor: pointer;
+
+  @media ${device.mobile} {
+    width: 30px;
+    height: 30px;
+    top: 50px;
+  }
+
   p {
     font-weight: 900;
-    font-size: 36px;
+    font-size: 2rem;
+
+    @media ${device.mobile} {
+      font-size: 1rem;
+    }
   }
 `;
 

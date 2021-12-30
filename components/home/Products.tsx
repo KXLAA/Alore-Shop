@@ -4,11 +4,24 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ProductsProps } from 'types/types';
 import { useAppContext } from 'context/state';
+import device from 'components/common/MediaQueries';
 
 const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 4rem;
+
+  @media ${device.tablet} {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media ${device.mobile} {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media ${device.mobileS} {
+    grid-template-columns: repeat(1, 1fr);
+  }
 `;
 
 const Card = styled.div`
@@ -75,6 +88,10 @@ const Button = styled.div`
   text-align: center;
   display: flex;
   justify-content: space-between;
+
+  @media ${device.tablet} {
+    font-size: 1.75rem;
+  }
 `;
 
 const Description = styled.div`
@@ -83,6 +100,10 @@ const Description = styled.div`
   color: #ffe500;
   font-size: 30px;
   padding: 8px 24px;
+
+  @media ${device.tablet} {
+    font-size: 1.75rem;
+  }
 `;
 
 const Products = ({ products }: ProductsProps) => {
