@@ -73,7 +73,7 @@ const Header = ({ text }: HeaderProps) => {
   const { cart } = useAppContext();
 
   const cartQuantity = cart
-    .map(({ count }: Product) => count)
+    .map(({ count }: Product): number => count)
     .reduce((accumulator: number, current: number) => accumulator + current, 0);
 
   return (

@@ -1,18 +1,31 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, {
+  createContext,
+  Dispatch,
+  SetStateAction,
+  useContext,
+  useState,
+} from 'react';
 import { Product } from 'types/types';
 
-const AppContext = createContext({});
+interface AppContextInterface {
+  cart: Product[];
+  setCart: Dispatch<SetStateAction<Product[]>>;
+  addToCart: (item: Product) => void;
+  removeItem: (item: Product) => void;
+}
+
+const AppContext = createContext({} as AppContextInterface);
 
 export function AppWrapper({
   children,
 }: React.PropsWithChildren<Record<never, any>>) {
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState<Product[]>([]);
 
   const addToCart = (item: Product) => {
     setCart((prevCart) => [...prevCart, item]);
   };
 
-  const summarizeCart = (cart: Product[]) => {
+  const summarizeCart = (cart: Product[]): Product[] => {
     const groupedItems = cart.reduce((summary, item) => {
       //Create new object with the id of cart item as the key and the cart item itself a value
 
@@ -38,7 +51,7 @@ export function AppWrapper({
     }
   };
 
-  const sharedState = {
+  const sharedState: AppContextInterface = {
     cart: summarizeCart(cart),
     setCart: setCart,
     addToCart: addToCart,

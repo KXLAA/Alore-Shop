@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React from 'react';
 import styled from 'styled-components';
 import { useAppContext } from 'context/state';
 import device from 'components/common/MediaQueries';
+import { Product } from 'types/types';
 
 const Container = styled.div`
   background-color: #222222;
@@ -101,8 +103,12 @@ const ImageContainer = styled.div`
   }
 `;
 
-const CartItem = ({ item }) => {
-  const { addToCart, removeItem } = useAppContext();
+interface ItemProps {
+  item: Product;
+}
+
+const CartItem = ({ item }: ItemProps) => {
+  const { removeItem, addToCart } = useAppContext();
 
   return (
     <Container>

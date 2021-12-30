@@ -3,7 +3,6 @@ import { gql, GraphQLClient } from 'graphql-request';
 import Head from 'next/head';
 import Layout from 'components/common/Layout';
 import Header from 'components/common/Header';
-import Filter from 'components/home/Filter';
 import Products from 'components/home/Products';
 import { ProductsProps } from 'types/types';
 
