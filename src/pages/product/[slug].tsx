@@ -1,8 +1,16 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React from 'react';
 import { gql, GraphQLClient } from 'graphql-request';
-import { ProductProps } from 'types/types';
+import { ProductProps, IProduct } from 'types/types';
 import Product from 'components/product/Product';
+
+interface Slug {
+  slug: string;
+}
+
+interface ParamsProps {
+  params: Slug;
+}
 
 const ProductPage = ({ product }: ProductProps) => {
   return (
@@ -43,7 +51,7 @@ export const getStaticPaths = async () => {
   `;
   const { products } = await graphQLClient.request(query);
   return {
-    paths: products.map(({ slug }) => ({
+    paths: products.map(({ slug }: IProduct) => ({
       params: {
         slug,
       },
@@ -53,7 +61,7 @@ export const getStaticPaths = async () => {
 };
 
 //getStaticProps
-export const getStaticProps = async ({ params }) => {
+export const getStaticProps = async ({ params }: ParamsProps) => {
   const token = process.env.TOKEN;
   const endpoint = process.env.ENDPOINT;
 
