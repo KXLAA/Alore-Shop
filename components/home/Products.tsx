@@ -11,7 +11,7 @@ const Grid = styled.div`
   grid-template-columns: repeat(4, 1fr);
   gap: 4rem;
 
-  @media ${device.tablet} {
+  @media ${device.laptop} {
     grid-template-columns: repeat(3, 1fr);
   }
 
