@@ -1,4 +1,5 @@
 import React from 'react';
+import Head from 'next/head';
 import styled from 'styled-components';
 import Layout from 'components/common/Layout';
 import Header from 'components/common/Header';
@@ -150,6 +151,15 @@ function Product({ product }: ProductProps) {
 
   return (
     <Layout>
+      <Head>
+        <title>
+          {product.title.toUpperCase()} BY {` `}
+          {product?.artist.toUpperCase()}
+        </title>
+        <meta name="description" content="ALORE | BUY VINYL" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
       <Header text="BACK" />
       <Container>
         <Image src={product.images[0].url} alt={product?.artist} />

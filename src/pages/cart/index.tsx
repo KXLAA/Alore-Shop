@@ -3,6 +3,7 @@ import Header from 'components/common/Header';
 import CartItem from 'components/cart/CartItem';
 import { useAppContext } from 'context/state';
 import styled from 'styled-components';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import EmptyCart from 'components/cart/EmptyCart';
 import device from 'components/common/MediaQueries';
@@ -90,6 +91,15 @@ const Cart = () => {
 
   return (
     <Layout>
+      <Head>
+        <title>
+          CART | {cartQuantity} {cartQuantity === 1 ? `ITEMS` : `ITEMS`} IN YOUR
+          CART{` `}
+        </title>
+        <meta name="description" content="ALORE | BUY VINYL" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
       <Header text="BACK" />
 
       {cartQuantity <= 0 ? (

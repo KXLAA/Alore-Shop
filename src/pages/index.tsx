@@ -10,11 +10,8 @@ export default function Home({ products }: ProductsProps) {
   return (
     <>
       <Head>
-        <title>ALORE</title>
-        <meta
-          name="description"
-          content="TypeScript starter for Next.js that includes all you need to build amazing apps"
-        />
+        <title>ALORE | BUY VINYL</title>
+        <meta name="description" content="ALORE | BUY VINYL" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
