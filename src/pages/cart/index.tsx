@@ -93,7 +93,7 @@ const Cart = () => {
     <Layout>
       <Head>
         <title>
-          CART | {cartQuantity} {cartQuantity === 1 ? `ITEMS` : `ITEMS`} IN YOUR
+          CART | {cartQuantity} {cartQuantity === 1 ? `ITEM` : `ITEMS`} IN YOUR
           CART{` `}
         </title>
         <meta name="description" content="ALORE | BUY VINYL" />
